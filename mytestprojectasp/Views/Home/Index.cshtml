@@ -1,0 +1,45 @@
+﻿@model FileViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (Model!=null)
+    {
+        if (Model.Images.Any())
+        {
+            <h1 class="display-4">All Users Images</h1>
+            @foreach (var item in Model.Images)
+            {
+                <img src="/data/@item" style="width:150px;height:150px;" />
+                <h3>@item</h3>
+                <div>
+                    <a asp-route-name="@item" asp-action="Delete">Delete</a>
+                </div>
+            }
+        }
+
+
+
+
+        @if (Model.Videos.Any())
+        {
+            <h1 class="display-4">All Users Videos</h1>
+            @foreach (var item in Model.Videos)
+            {
+                <div>
+                    <video width="320" height="240" controls>
+                        <source src="/data/@item" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h3>@item</h3>
+                    <div>
+                        <a asp-route-name="@item" asp-action="DeleteVideo">Delete</a>
+                    </div>
+                </div>
+            }
+        }
+
+    }
+</div>
